@@ -14,6 +14,16 @@ namespace CustomGCMethods
             return (int)Math.Sqrt(Math.Pow(a.X - b.X, 2) + Math.Pow(a.Y - b.Y, 2));
         }
 
+        public static float GetAreaOfTriangle(Triangle t)
+        {
+            float a = GetDistance(t.B, t.C);
+            float b = GetDistance(t.A, t.C);
+            float c = GetDistance(t.A, t.B);
+            float s = (a + b + c) / 2;
+
+            return (float)(Math.Sqrt(s * (s - a) * (s - b) * (s - c)));
+        }
+
         /// <summary>
         /// Checks if two lines intersect
         /// </summary>

@@ -8,6 +8,7 @@ namespace Curs8
         Bitmap bmp;
         Graphics g;
         List<Point> points;
+        float Area = 0;
         public Form1()
         {
             InitializeComponent();
@@ -76,33 +77,34 @@ namespace Curs8
                         break;
                     }
                 }
+            }
 
-                colors[points[0]] = 0;
-                colors[points[1]] = 1;
-                colors[points[2]] = 2;
+            colors[points[0]] = 0;
+            colors[points[1]] = 1;
+            colors[points[2]] = 2;
 
-                triangles.Reverse();
+            triangles.Reverse();
 
-                foreach (var t in triangles)
+            foreach (var t in triangles)
+            {
+                if (colors[t.A] == -1)
                 {
-                    if (colors[t.A] == -1)
-                    {
-                        colors[t.A] = 3 - (colors[t.B] + colors[t.C]);
-                    }
-                    if (colors[t.B] == -1)
-                    {
-                        colors[t.B] = 3 - (colors[t.A] + colors[t.C]);
-                    }
-                    if (colors[t.C] == -1)
-                    {
-                        colors[t.C] = 3 - (colors[t.A] + colors[t.B]);
-                    }
+                    colors[t.A] = 3 - (colors[t.B] + colors[t.C]);
                 }
-
-                foreach (var c in colors)
+                if (colors[t.B] == -1)
                 {
-                    g.DrawEllipse(new Pen(resourceColors[c.Value]), c.Key.X - 2, c.Key.Y - 2, 4, 4);
+                    colors[t.B] = 3 - (colors[t.A] + colors[t.C]);
                 }
+                if (colors[t.C] == -1)
+                {
+                    colors[t.C] = 3 - (colors[t.A] + colors[t.B]);
+                }
+                Area += CustomGeometry.GetAreaOfTriangle(t);
+            }
+
+            foreach (var c in colors)
+            {
+                g.DrawEllipse(new Pen(resourceColors[c.Value], 2), c.Key.X - 6, c.Key.Y - 6, 13, 13);
             }
 
             foreach (var d in diagonals)
@@ -110,6 +112,7 @@ namespace Curs8
                 g.DrawLine(Pens.Green, d.A, d.B);
             }
 
+            label1.Text = "Aria = " + Area;
             RefreshImage();
         }
 
