@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <RootNamespace>GC_.NET_Core</RootNamespace>
+    <Nullable>enable</Nullable>
+    <UseWindowsForms>true</UseWindowsForms>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\CustomGCMethods\CustomGCMethods.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="CustomDrawMethods">
+      <HintPath>..\..\..\GC\GC\CustomDrawMethods\bin\Debug\CustomDrawMethods.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
