@@ -10,12 +10,8 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Curs6\Curs6.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Reference Include="CustomGCMethods">
-      <HintPath>..\..\..\DLLS\CustomGCMethods\Debug\net6.0\CustomGCMethods.dll</HintPath>
-    </Reference>
+    <ProjectReference Include="..\Curs9\Curs9.csproj" />
+    <ProjectReference Include="..\CustomGCMethods\CustomGCMethods.csproj" />
   </ItemGroup>
 
 </Project>

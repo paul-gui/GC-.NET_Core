@@ -77,6 +77,29 @@ namespace CustomGCMethods
             return false;
         }
 
+        public static bool IsInsidePolygon(Point xl, Point x, Point xr, Point interior)
+        {
+            if (GetOrientation(xl, x, xr) == 1)
+            {
+                int orientation1 = GetOrientation(x, interior, xr);
+                int orientation2 = GetOrientation(x, xl, interior);
+                if (orientation1 != -1 || orientation2 != -1)
+                {
+                    return false;
+                }
+            }
+            else
+            {
+                int orientation1 = GetOrientation(x, interior, xr);
+                int orientation2 = GetOrientation(x, xl, interior);
+                if (orientation1 == 1 && orientation2 == 1)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
+
         public struct Segment
         {
             public Point A, B;
