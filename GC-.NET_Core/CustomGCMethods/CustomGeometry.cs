@@ -61,6 +61,29 @@ namespace CustomGCMethods
         }
 
         /// <summary>
+        /// Checks whether a polygon given by an ordered list of points is convex or not
+        /// </summary>
+        /// <param name="points"></param>
+        /// <returns>true if the polygon is convex and false otherwise</returns>
+        public static bool IsConvexPolygon(List<Point> points)
+        {
+            int n = points.Count;
+            bool ok = true;
+            for (int i = 0; i < n; i++)
+            {
+                int iMinus1 = (n + i - 1) % n;
+                int iPlus1 = (n + i + 1) % n;
+
+                if (GetOrientation(points[iMinus1], points[i], points[iPlus1]) == -1)
+                {
+                    ok = false;
+                    break;
+                }
+            }
+            return ok;
+        }
+
+        /// <summary>
         /// Checks if the point of a polygon is convex. The order of points in the polygon must be clockwise. Collinear points are considered convex.
         /// </summary>
         /// <param name="previous"></param>
